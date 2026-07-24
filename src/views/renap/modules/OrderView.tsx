@@ -11,26 +11,26 @@ import MainInput from "@/components/fields/MainInput";
 import WarningModal from "@/components/modals/WarningModal";
 import type { IModalData } from "@/interfaces/components/modal/IModalData";
 import { useRequest } from "@/utils/http/useRequest";
-import getClientData from "@/services/getClientData";
-import type { IClientReq } from "@/interfaces/services/clientData/IClientReq";
-import type { IClientData } from "@/interfaces/services/clientData/IClientData";
+import getTipoTarifario from "@/services/getClientData";
+import type { IOrderReq } from "@/interfaces/services/orderData/IOrderReq";
+import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import MainFormCard from "@/components/cards/MainFormCard";
 import MainGroupButton from "@/components/buttons/MainGroupButton";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
-  onSubmitClientData: (data: IClientData) => void;
+  onSubmitOrderData: (data: IOrderData) => void;
   onSelectPage: (item: INavigation) => void;
 }>;
 
-const HomeView = ({
+const OrderView = ({
   authContext,
-  onSubmitClientData,
+  onSubmitOrderData,
   onSelectPage,
 }: IProps) => {
   const { t } = useTranslation();
-  const { loading, execute } = useRequest<IClientData>();
+  const { loading, execute } = useRequest<IOrderData>();
   const [onChangeModal, setOnChangeModal] = useState(false);
   const [modalData, setModalData] = useState<IModalData>();
 
@@ -58,7 +58,7 @@ const HomeView = ({
     const user = authContext?.user?.username ?? "";
     const office = authContext?.user?.profile?.oficina ?? "";
     const profileId = authContext?.user?.profile?.id ?? "";
-    const clientData: IClientReq = {
+    const orderData: IOrderReq = {
       contrato: form.clientContract,
       usuario: user,
       caja_rural: office,
@@ -67,7 +67,7 @@ const HomeView = ({
     };
 
     const { data: resClientData, error: resClientError } = await execute(() =>
-      getClientData(clientData, t, authContext),
+      getTipoTarifario(orderData, t, authContext),
     );
     if (!resClientData) {
       setModalData({
@@ -79,8 +79,8 @@ const HomeView = ({
       return;
     }
 
-    onSubmitClientData(resClientData);
-    onSelectPage("client");
+    onSubmitOrderData(resClientData);
+    onSelectPage("preview");
   };
 
   return (
@@ -122,4 +122,4 @@ const HomeView = ({
   );
 };
 
-export default HomeView;
+export default OrderView;

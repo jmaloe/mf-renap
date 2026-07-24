@@ -5,12 +5,12 @@ import type { INavigation } from "@/interfaces/components/navigation/INavigation
 import { FieldGroup } from "@/components/ui/field";
 import DisabledInput from "@/components/fields/DisabledInput";
 import CancelButton from "@/components/buttons/CancelButton";
-import type { IClientData } from "@/interfaces/services/clientData/IClientData";
+import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import MainFormCard from "@/components/cards/MainFormCard";
 import MainGroupButton from "@/components/buttons/MainGroupButton";
 
 type IProps = Readonly<{
-  client: IClientData;
+  client: IOrderData;
   onSelectPage: (item: INavigation) => void;
 }>;
 
@@ -22,7 +22,7 @@ const ClientView = ({ client, onSelectPage }: IProps) => {
   };
 
   const onCancel = () => {
-    onSelectPage("home");
+    onSelectPage("order");
   };
 
   return (

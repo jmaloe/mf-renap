@@ -1,4 +1,4 @@
-export type IClientData = Readonly<{
+export type IOrderData = Readonly<{
   telefono: string;
   factura: string;
   fecha: string;

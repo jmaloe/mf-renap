@@ -6,7 +6,7 @@ import type { INavigation } from "@/interfaces/components/navigation/INavigation
 import { FieldGroup } from "@/components/ui/field";
 import CancelButton from "@/components/buttons/CancelButton";
 import ReadOnlyField from "@/components/fields/ReadOnlyField";
-import type { IClientData } from "@/interfaces/services/clientData/IClientData";
+import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import type { IPaymentReq } from "@/interfaces/services/paymentData/IPaymentReq";
 import { useRequest } from "@/utils/http/useRequest";
 import postPaymentStatus from "@/services/postPaymentStatus";
@@ -22,7 +22,7 @@ import MainGroupButton from "@/components/buttons/MainGroupButton";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
-  client: IClientData;
+  client: IOrderData;
   onSubmitReceiptData: (data: IReceiptData) => void;
   onSelectPage: (item: INavigation) => void;
 }>;

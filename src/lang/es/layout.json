@@ -1,8 +1,8 @@
 {
   "header": {
-    "title": "Claro postpago",
+    "title": "Ingreso de datos",
     "descriptions": {
-      "default": "Consulta de saldo Claro postpago",
+      "default": "",
       "invoice": "Imprimir comprobante"
     }
   },

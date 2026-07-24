@@ -1,8 +1,8 @@
 import type { TFunction } from "i18next";
 
-import type { IClientRes } from "@/interfaces/services/clientData/IClientRes";
-import type { IClientReq } from "@/interfaces/services/clientData/IClientReq";
-import type { IClientData } from "@/interfaces/services/clientData/IClientData";
+import type { IOrderRes } from "@/interfaces/services/orderData/IOrderRes";
+import type { IOrderReq } from "@/interfaces/services/orderData/IOrderReq";
+import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import { getCleanString, toCapitalizeFirst } from "@/utils/formats/formatString";
 import { getFormatNumber } from "@/utils/formats/formatNumber";
 import type { IValidAmountRes } from "@/interfaces/services/validAmount/IValidAmountRes";
@@ -11,20 +11,20 @@ import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import { http } from "@/utils/http/httpClient";
 
-const getClientData = async (
-  client: IClientReq,
+const getTipoTarifario = async (
+  client: IOrderReq,
   t: TFunction,
   authContext?: IAuthContext | null,
-): Promise<IClientData> => {
+): Promise<IOrderData> => {
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";
   const transactionCode = config?.transactionCode ?? "";
   const apiGetNumber = config?.apiRestPaths.phoneNumber ?? "";
   const apiValidAmount = config?.apiRestPaths.validAmount ?? "";
 
-  let userData: IClientRes;
+  let userData: IOrderRes;
   try {
-    userData = await http.post<IClientRes>(apiGetNumber, token, client);
+    userData = await http.post<IOrderRes>(apiGetNumber, token, client);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
@@ -44,7 +44,7 @@ const getClientData = async (
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
   }
 
-  const resData: IClientData = {
+  const resData: IOrderData = {
     telefono: getCleanString(client.contrato),
     factura: getCleanString(data.factura),
     fecha: getCleanString(data.fecha),
@@ -82,4 +82,4 @@ const getClientData = async (
   return resData;
 };
 
-export default getClientData;
+export default getTipoTarifario;

@@ -2,12 +2,11 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState, type JSX } from "react";
 
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
-import ClientView from "@/views/pages/ClientView";
 import type { INavigation } from "@/interfaces/components/navigation/INavigation";
-import PreviewView from "@/views/pages/PreviewView";
-import type { IClientData } from "@/interfaces/services/clientData/IClientData";
-import HomeView from "@/views/pages/HomeView";
-import ReceiptView from "@/views/pages/ReceiptView";
+import PreviewView from "@/views/renap/modules/PreviewView";
+import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
+import OrderView from "@/views/renap/modules/OrderView";
+import ReceiptView from "@/views/renap/modules/ReceiptView";
 import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
 import getReprintData from "@/services/getReprintData";
 import MainLoader from "@/components/loader/MainLoader";
@@ -19,12 +18,12 @@ type IAuthProps = Readonly<{
   authProps: IAuthContext;
 }>;
 
-const MainView = ({ authProps }: IAuthProps) => {
+const RenapView = ({ authProps }: IAuthProps) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState<INavigation>("home");
+  const [page, setPage] = useState<INavigation>("order");
   const [errorMsg, setErrorMsg] = useState("");
-  const [clientData, setClientData] = useState<IClientData>();
+  const [clientData, setClientData] = useState<IOrderData>();
   const [receiptData, setReceiptData] = useState<IReceiptData>();
   const hasLoadedRef = useRef(false);
 
@@ -69,21 +68,18 @@ const MainView = ({ authProps }: IAuthProps) => {
     }
     setPage(item);
   };
-  const submitClientData = (data: IClientData) => setClientData(data);
+  const submitOrderData = (data: IOrderData) => setClientData(data);
   const submitReceiptData = (data: IReceiptData) => setReceiptData(data);
 
   const views: Record<INavigation, JSX.Element | null> = {
     error: <ErrorReprintView authContext={authProps} message={errorMsg} />,
-    home: (
-      <HomeView
+    order: (
+      <OrderView
         authContext={authProps}
-        onSubmitClientData={submitClientData}
+        onSubmitOrderData={submitOrderData}
         onSelectPage={selectPage}
       />
-    ),
-    client: clientData ? (
-      <ClientView client={clientData} onSelectPage={selectPage} />
-    ) : null,
+    ),    
     preview: clientData ? (
       <PreviewView
         authContext={authProps}
@@ -101,9 +97,9 @@ const MainView = ({ authProps }: IAuthProps) => {
     ) : null,
   };
 
-  const currentPage: INavigation = views[page] ? page : "home";
+  const currentPage: INavigation = views[page] ? page : "order";
   setCurrentScreen(currentPage);
   return views[currentPage];
 };
 
-export default MainView;
+export default RenapView;

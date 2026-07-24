@@ -4,7 +4,7 @@ import { I18nextProvider } from "react-i18next";
 import "@/index.css";
 import { MfI18n } from "@/i18n";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
-import MainView from "@/views/MainView";
+import RenapView from "@/views/renap/RenapView";
 import MainLoader from "@/components/loader/MainLoader";
 import ErrorView from "@/views/ErrorView";
 import getUserAccess from "@/services/getUserAccess";
@@ -50,51 +50,6 @@ const App = ({ authProps }: Props) => {
     validateAccess();
   }, [authProps]);
 
-  authProps = {
-    isAuthenticated: true,
-    isLoading: false,
-    user: {
-      id: "2ef4bd18-bf43-427a-8e86-d75aa123ed76",
-      name: "User BanruralTest",
-      username: "226513100721",
-      email: "test@test.com",
-      roles: [
-        "default-roles-br-cajabr-realm",
-        "offline_access",
-        "uma_authorization"
-      ],
-      profile: {
-        cuenta: "3268040966",
-        oficina: "50201",
-        nombre: "PRUEBA 2",
-        descripcion: "LUIS ORLANDO ARREDONDO AREVALO",
-        rol: "55",
-        id: "42",
-        rest: "1",
-        renap: "",
-        latitud: "0.0",
-        longitud: "0.0",
-        rolData: {
-          descripcionRol: "Administrador"
-        },
-        departmentData: {
-          departamento: "Guatemala",
-          municipio: "Fraijanes"
-        }
-      },
-      printType: {
-        codigo: "0",
-        descripcion: "Hibrida"
-      }
-    },
-    transactInfo: null,
-    login: (() => (true)),
-    logout: (() => (true)),
-    token: import.meta.env.VITE_APIGATEWAY_TOKEN ?? "mf-root",
-    tokenParsed: 'ABCDEFGHIJKLMNOPQRSTUVWX',
-    loginWithAcr: (() => (true))
-  }
-
   const renderContent = ({ authProps }: Props) => {
     setCurrentScreen("home");
 
@@ -108,7 +63,7 @@ const App = ({ authProps }: Props) => {
     if (hasAccess === null) return <MainLoader />;
     if (!hasAccess) return <ErrorView />;
 
-    return <MainView authProps={authProps} />;
+    return <RenapView authProps={authProps} />;
   };
 
   return (
