@@ -1,0 +1,45 @@
+# docs
+*.md
+
+# dependencias
+node_modules
+.npm
+
+# builds
+dist
+.vite
+
+# git
+.git
+.gitignore
+
+# logs
+*.log
+
+# sistema
+.DS_Store
+Thumbs.db
+cache
+*.tsbuildinfo
+
+# editor
+.vscode
+.idea
+
+# container
+Dockerfile
+Containerfile
+docker-compose.yml
+compose.yml
+deploy
+
+# credentials
+.env
+.env.*
+public/config/*
+!public/config/env-config.json.example
+
+# testing
+coverage
+test
+.nyc_output

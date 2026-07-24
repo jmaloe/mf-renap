@@ -1,0 +1,16 @@
+{
+  "transactionCode": "18108",
+  "hostJsons": {
+    "runtime": "/config/mf-config.json",
+    "remotes": "/config/mf-hub-remotes.json"
+  },
+  "apiBaseUrl": "https://....banrural.com.gt",
+  "apiRestPaths": {
+    "verifyAccess": "/ws_cr_gestiones_admon/v1/verificar-acceso",
+    "phoneNumber": "/ws_cr_claro_postpago/v1/consulta",
+    "validAmount": "/ws_cr_gestiones_admon/v1/validar-monto",
+    "paidData": "/ws_cr_claro_postpago/v1/pago",
+    "detailTransaction": "/ws_reimprime_boletas_cr/v1/detalle_transacciones",
+    "dateTimeData": "https://....banrural.com.gt/api-time"
+  }
+}

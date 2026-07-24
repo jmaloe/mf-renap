@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mf-renap
+  namespace: br-cajabr-renap
+  labels:
+    app: mf-renap
+spec:
+  selector:
+    matchLabels:
+      app: mf-renap
+  template:
+    metadata:
+      labels:
+        app: mf-renap
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: mf-renap
+          image: image-registry.openshift-image-registry.svc:5000/br-cajabr-renap/mf-renap@sha256:0c3d39ef0b6d2900d1f217dbccbda912e3d80cd9afdb43530f0344257152972b
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: America/Guatemala
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - name: env-runtime-config
+              mountPath: /opt/app-root/src/mf-renap/config
+              readOnly: true
+            - name: tmp-volume
+              mountPath: /tmp
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 20m
+              memory: 32Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 3
+      volumes:
+        - name: env-runtime-config
+          secret:
+            secretName: mf-renap-secret
+        - name: tmp-volume
+          emptyDir:
+            sizeLimit: 50Mi

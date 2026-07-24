@@ -1,0 +1,12 @@
+{
+  "transactionCode": "",
+  "hostJsons": { },
+  "apiBaseUrl": "https://....banrural.com.gt",
+  "apiRestPaths": { },
+  "apiSoap": {
+    "transactionSubMenu": {
+      "path": "/CajaRural/WS_CajaRural/WS_CR_GestionesAdm/gestiones_admon.svc",
+      "action": "http://tempuri.org/gestiones_admon/Obtiene_Nivel"
+    }
+  },
+}

@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: mf-renap-route
+  namespace: br-cajabr-renap
+spec:
+  host: caja-banrural-dev.apps.ocp-desa.banrural.com.gt
+  path: /mf-renap
+  to:
+    kind: Service
+    name: mf-renap-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

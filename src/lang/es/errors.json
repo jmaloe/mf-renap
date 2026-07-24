@@ -1,0 +1,28 @@
+{
+  "schedule": {
+    "start": 8,
+    "end": 20
+  },
+  "field": {
+    "clientContract": {
+      "nonEmpty": "Por favor, ingrese su No. de teléfono.",
+      "digit": "Por favor, solamente ingrese números.",
+      "length": "Por favor, ingrese su No. de teléfono con al menos 8 digitos."
+    }
+  },
+  "msg": {
+    "titles": {
+      "default": "Error en la transacción",
+      "invalidData": "Error en la transacción. Verifique los datos ingresados",
+      "badFormat": "Formato Incorrecto"
+    },
+    "descriptions": {
+      "default": "Ocurrió un error inesperado. Por favor, intente nuevamente o contacte a soporte.",
+      "noPermissions": "No posee permisos para realizar esta transacción.",
+      "invalidAmount": "El monto de la transacción no esta permitido.",
+      "outOfHours": "El servicio no se encuentra disponible en estos momentos, el horario establecido es de 8:00 a 20:00 horas.",
+      "noDataTransaction": "No se obtuvo resultados.",
+      "noResponseService": "Ocurrio un error en la respuesta del Web Service."
+    }
+  }
+}

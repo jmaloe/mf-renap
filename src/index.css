@@ -1,0 +1,251 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@layer base {
+  h1 {
+    font-size: var(--font-h1-size);
+    line-height: var(--font-h1-line-height);
+    font-weight: var(--font-h1-weight);
+    letter-spacing: var(--font-h1-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  h2 {
+    font-size: var(--font-h2-size);
+    line-height: var(--font-h2-line-height);
+    font-weight: var(--font-h2-weight);
+    letter-spacing: var(--font-h2-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  h3 {
+    font-size: var(--font-h3-size);
+    line-height: var(--font-h3-line-height);
+    font-weight: var(--font-h3-weight);
+    letter-spacing: var(--font-h3-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  h4 {
+    font-size: var(--font-h4-size);
+    line-height: var(--font-h4-line-height);
+    font-weight: var(--font-h4-weight);
+    letter-spacing: var(--font-h4-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  h5 {
+    font-size: var(--font-h5-size);
+    line-height: var(--font-h5-line-height);
+    font-weight: var(--font-h5-weight);
+    letter-spacing: var(--font-h5-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  h6 {
+    font-size: var(--font-h6-size);
+    line-height: var(--font-h6-line-height);
+    font-weight: var(--font-h6-weight);
+    letter-spacing: var(--font-h6-letter-spacing);
+    font-family: var(--font-family-base);
+  }
+
+  .text-xs {
+    font-size: var(--font-text-xs-size) !important;
+    line-height: var(--font-text-xs-line-height) !important;
+    font-family: var(--font-family-base) !important;
+  }
+
+  .text-sm {
+    font-size: var(--font-text-sm-size) !important;
+    line-height: var(--font-text-sm-line-height) !important;
+    font-family: var(--font-family-base) !important;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Igual que sandbox: cadena flex hasta viewport para `flex-1` + `min-h-0` en columnas. */
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+}
+
+@theme {
+  /* Colors - Gray - Gris */
+  --color-gray-50: var(--color-gray-50);
+  --color-gray-100: var(--color-gray-100);
+  --color-gray-200: var(--color-gray-200);
+  --color-gray-300: var(--color-gray-300);
+  --color-gray-400: var(--color-gray-400);
+  --color-gray-500: var(--color-gray-500);
+  --color-gray-600: var(--color-gray-600);
+  --color-gray-700: var(--color-gray-700);
+  --color-gray-800: var(--color-gray-800);
+  --color-gray-900: var(--color-gray-900);
+
+  /* Colors - Yellow - Amarillo */
+  --color-yellow-50: var(--color-yellow-50);
+  --color-yellow-100: var(--color-yellow-100);
+  --color-yellow-200: var(--color-yellow-200);
+  --color-yellow-300: var(--color-yellow-300);
+  --color-yellow-400: var(--color-yellow-400);
+  --color-yellow-500: var(--color-yellow-500);
+  --color-yellow-600: var(--color-yellow-600);
+  --color-yellow-700: var(--color-yellow-700);
+  --color-yellow-800: var(--color-yellow-800);
+  --color-yellow-900: var(--color-yellow-900);
+
+  /* Colors - Blue - Azul */
+  --color-blue-50: var(--color-blue-50);
+  --color-blue-100: var(--color-blue-100);
+  --color-blue-200: var(--color-blue-200);
+  --color-blue-300: var(--color-blue-300);
+  --color-blue-400: var(--color-blue-400);
+  --color-blue-500: var(--color-blue-500);
+  --color-blue-600: var(--color-blue-600);
+  --color-blue-700: var(--color-blue-700);
+  --color-blue-800: var(--color-blue-800);
+  --color-blue-900: var(--color-blue-900);
+
+  /* Colors - Digital Orange - Naranja Digital */
+  --color-digital-orange-50: var(--color-digital-orange-50);
+  --color-digital-orange-100: var(--color-digital-orange-100);
+  --color-digital-orange-200: var(--color-digital-orange-200);
+  --color-digital-orange-300: var(--color-digital-orange-300);
+  --color-digital-orange-400: var(--color-digital-orange-400);
+  --color-digital-orange-500: var(--color-digital-orange-500);
+  --color-digital-orange-600: var(--color-digital-orange-600);
+  --color-digital-orange-700: var(--color-digital-orange-700);
+  --color-digital-orange-800: var(--color-digital-orange-800);
+  --color-digital-orange-900: var(--color-digital-orange-900);
+
+  /* Colors - Sunny Orange - Naranja Sol */
+  --color-sunny-orange-50: var(--color-sunny-orange-50);
+  --color-sunny-orange-100: var(--color-sunny-orange-100);
+  --color-sunny-orange-200: var(--color-sunny-orange-200);
+  --color-sunny-orange-300: var(--color-sunny-orange-300);
+  --color-sunny-orange-400: var(--color-sunny-orange-400);
+  --color-sunny-orange-500: var(--color-sunny-orange-500);
+  --color-sunny-orange-600: var(--color-sunny-orange-600);
+  --color-sunny-orange-700: var(--color-sunny-orange-700);
+  --color-sunny-orange-800: var(--color-sunny-orange-800);
+  --color-sunny-orange-900: var(--color-sunny-orange-900);
+
+  /* Colors - Red - Rojo */
+  --color-red-50: var(--color-red-50);
+  --color-red-100: var(--color-red-100);
+  --color-red-200: var(--color-red-200);
+  --color-red-300: var(--color-red-300);
+  --color-red-400: var(--color-red-400);
+  --color-red-500: var(--color-red-500);
+  --color-red-600: var(--color-red-600);
+  --color-red-700: var(--color-red-700);
+  --color-red-800: var(--color-red-800);
+  --color-red-900: var(--color-red-900);
+
+  /* Colors - Forest Green - Verde Bosque */
+  --color-forest-green-50: var(--color-forest-green-50);
+  --color-forest-green-100: var(--color-forest-green-100);
+  --color-forest-green-200: var(--color-forest-green-200);
+  --color-forest-green-300: var(--color-forest-green-300);
+  --color-forest-green-400: var(--color-forest-green-400);
+  --color-forest-green-500: var(--color-forest-green-500);
+  --color-forest-green-600: var(--color-forest-green-600);
+  --color-forest-green-700: var(--color-forest-green-700);
+  --color-forest-green-800: var(--color-forest-green-800);
+  --color-forest-green-900: var(--color-forest-green-900);
+
+  /* Colors - Corn Green - Verde Maíz */
+  --color-corn-green-50: var(--color-corn-green-50);
+  --color-corn-green-100: var(--color-corn-green-100);
+  --color-corn-green-200: var(--color-corn-green-200);
+  --color-corn-green-300: var(--color-corn-green-300);
+  --color-corn-green-400: var(--color-corn-green-400);
+  --color-corn-green-500: var(--color-corn-green-500);
+  --color-corn-green-600: var(--color-corn-green-600);
+  --color-corn-green-700: var(--color-corn-green-700);
+  --color-corn-green-800: var(--color-corn-green-800);
+  --color-corn-green-900: var(--color-corn-green-900);
+
+  /* Colors - Hill Green - Verde Lomas */
+  --color-hill-green-50: var(--color-hill-green-50);
+  --color-hill-green-100: var(--color-hill-green-100);
+  --color-hill-green-200: var(--color-hill-green-200);
+  --color-hill-green-300: var(--color-hill-green-300);
+  --color-hill-green-400: var(--color-hill-green-400);
+  --color-hill-green-500: var(--color-hill-green-500);
+  --color-hill-green-600: var(--color-hill-green-600);
+  --color-hill-green-700: var(--color-hill-green-700);
+  --color-hill-green-800: var(--color-hill-green-800);
+  --color-hill-green-900: var(--color-hill-green-900);
+
+  /* Colors - Field Green - Verde Siembras */
+  --color-field-green-50: var(--color-field-green-50);
+  --color-field-green-100: var(--color-field-green-100);
+  --color-field-green-200: var(--color-field-green-200);
+  --color-field-green-300: var(--color-field-green-300);
+  --color-field-green-400: var(--color-field-green-400);
+  --color-field-green-500: var(--color-field-green-500);
+  --color-field-green-600: var(--color-field-green-600);
+  --color-field-green-700: var(--color-field-green-700);
+  --color-field-green-800: var(--color-field-green-800);
+  --color-field-green-900: var(--color-field-green-900);
+
+  /* Colors - Volcanic Green - Verde Volcanes */
+  --color-volcanic-green-50: var(--color-volcanic-green-50);
+  --color-volcanic-green-100: var(--color-volcanic-green-100);
+  --color-volcanic-green-200: var(--color-volcanic-green-200);
+  --color-volcanic-green-300: var(--color-volcanic-green-300);
+  --color-volcanic-green-400: var(--color-volcanic-green-400);
+  --color-volcanic-green-500: var(--color-volcanic-green-500);
+  --color-volcanic-green-600: var(--color-volcanic-green-600);
+  --color-volcanic-green-700: var(--color-volcanic-green-700);
+  --color-volcanic-green-800: var(--color-volcanic-green-800);
+  --color-volcanic-green-900: var(--color-volcanic-green-900);
+}
+
+@theme inline {
+  --font-heading: var(--font-family-base);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-white: var(--white);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-app-nav-item-accent: var(--app-nav-item-accent);
+  --color-app-nav-item-text: var(--app-nav-item-text);
+  --color-app-nav-item-surface-hover: var(--app-nav-item-surface-hover);
+  --color-border-form: var(--border-form);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+}
+
+:root {
+  --background: oklch(100% 0 0deg);
+  --white: #fff;
+  --foreground: oklch(14.5% 0 0deg);
+  --card: oklch(100% 0 0deg);
+  --border: oklch(92.2% 0 0deg);
+  --popover: oklch(100% 0 0deg);
+  --popover-foreground: oklch(14.5% 0 0deg);
+  --muted: oklch(97% 0 0deg);
+  --muted-foreground: oklch(55.6% 0 0deg);
+  --app-nav-item-text: #1e2c28;
+  --app-nav-item-surface-hover: #e6f8ee;
+  --app-nav-item-accent: #00b451;
+  --border-form: rgb(0 0 0 / 9%);
+  --sidebar: oklch(98.5% 0 0deg);
+  --sidebar-foreground: oklch(14.5% 0 0deg);
+}

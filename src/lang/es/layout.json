@@ -1,0 +1,98 @@
+{
+  "header": {
+    "title": "Claro postpago",
+    "descriptions": {
+      "default": "Consulta de saldo Claro postpago",
+      "invoice": "Imprimir comprobante"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Ingrese su número de teléfono (Claro)",
+      "clientContract": {
+        "label": "Número telefónico",
+        "placeholder": "Ingresa el número telefónico"
+      }
+    },
+    "invoice": {
+      "title": "Comprobante"
+    }
+  },
+  "receipts": {
+    "title": "Pago de Servicios",
+    "data": {
+      "contract": "Teléfono:",
+      "payment": "Pago de:",
+      "amount": "Por un valor de:",
+      "currencySymbol": "Q.",
+      "invoice": "Factura:",
+      "invoiceSymbol": "No.",
+      "concept": "Por concepto de:",
+      "receiptNumber": "Número de boleta:",
+      "date": "Fecha:"
+    },
+    "userData": {
+      "office": "Oficina:",
+      "user": "Usuario:",
+      "name": "Nombre:",
+      "department": "Departamento:",
+      "city": "Municipio:"
+    },
+    "footer": "Banco de Desarrollo Rural S.A. es responsable por las operaciones realizadas y por los servicios prestados, por cuenta de éste, por el agente bancario",
+    "voucher": {
+      "concept": "Pago Claro Postpago"
+    },
+    "letter": {
+      "concept": "Pago de Claro - Post Pago"
+    },
+    "sign": {
+      "letter": "F:",
+      "received": "(Recibí Conforme)"
+    },
+    "reprint": {
+      "title": "Reimpresión",
+      "subtitle": "Esta es una reimpresión del documento original."
+    }
+  },
+  "loader": {
+    "label": "Cargando..."
+  },
+  "alerts": {
+    "warning": "Confirme con el cliente que los datos son correctos antes de realizar la transacción.",
+    "print": "No fue posible mostrar las opciones del comprobante. Por favor, contacte a soporte."
+  },
+  "buttons": {
+    "transmit": "Transmitir",
+    "print": "Imprimir",
+    "cancel": "Cancelar",
+    "back": "Regresar"
+  },
+  "radioButtons": {
+    "printers": {
+      "voucher": "Impresora térmica: Boletas tipo voucher.",
+      "letter": "Impresora de tinta: Boletas media carta."
+    }
+  },
+  "fields": {
+    "optional": "(opcional)",
+    "service": {
+      "label": "Servicio",
+      "description": "Claro - Postpago"
+    },
+    "phone": {
+      "label": "Teléfono"
+    },
+    "invoice": {
+      "label": "Factura"
+    },
+    "date": {
+      "label": "Fecha de factura"
+    },
+    "name": {
+      "label": "Nombre"
+    },
+    "amount": {
+      "label": "Monto a pagar"
+    }
+  }
+}
