@@ -35,18 +35,18 @@ const OrderView = ({
   const [modalData, setModalData] = useState<IModalData>();
 
   const formSchema = z.object({
-    clientContract: z
+    clientOrder: z
       .string()
       .trim()
-      .nonempty(t("field.clientContract.nonEmpty", { ns: "error" }))
-      .regex(/^\d+$/, t("field.clientContract.digit", { ns: "error" }))
-      .length(8, t("field.clientContract.length", { ns: "error" })),
+      .nonempty(t("field.clientOrder.nonEmpty", { ns: "error" }))
+      .regex(/^\d+$/, t("field.clientOrder.digit", { ns: "error" }))
+      .length(8, t("field.clientOrder.length", { ns: "error" })),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      clientContract: "",
+      clientOrder: "",
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -59,7 +59,7 @@ const OrderView = ({
     const office = authContext?.user?.profile?.oficina ?? "";
     const profileId = authContext?.user?.profile?.id ?? "";
     const orderData: IOrderReq = {
-      contrato: form.clientContract,
+      contrato: form.clientOrder,
       usuario: user,
       caja_rural: office,
       url: baseUrl,
@@ -85,21 +85,21 @@ const OrderView = ({
 
   return (
     <MainFormCard
-      titleCard={t("pages.home.title")}
+      titleCard={t("pages.order.title")}
       className="w-full sm:w-auto"
       loading={loading}
     >
       <FieldGroup>
         <Controller
-          name="clientContract"
+          name="clientOrder"
           control={form.control}
           render={({ field, fieldState }) => (
             <MainInput
-              id="clientContract"
-              label={t("pages.home.clientContract.label")}
+              id="clientOrder"
+              label={t("pages.order.clientOrder.label")}
               field={field}
               fieldState={fieldState}
-              placeholder={t("pages.home.clientContract.placeholder")}
+              placeholder={t("pages.order.clientOrder.placeholder")}
               size={10}
               maxLength={8}
             />

@@ -4,7 +4,7 @@
     "end": 20
   },
   "field": {
-    "clientContract": {
+    "clientOrder": {
       "nonEmpty": "Por favor, ingrese su No. de teléfono.",
       "digit": "Por favor, solamente ingrese números.",
       "length": "Por favor, ingrese su No. de teléfono con al menos 8 digitos."

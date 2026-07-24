@@ -23,7 +23,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState<INavigation>("order");
   const [errorMsg, setErrorMsg] = useState("");
-  const [clientData, setClientData] = useState<IOrderData>();
+  const [orderData, setOrderData] = useState<IOrderData>();
   const [receiptData, setReceiptData] = useState<IReceiptData>();
   const hasLoadedRef = useRef(false);
 
@@ -63,12 +63,12 @@ const RenapView = ({ authProps }: IAuthProps) => {
 
   const selectPage = (item: INavigation) => {
     if (!item) {
-      setClientData(undefined);
+      setOrderData(undefined);
       setReceiptData(undefined);
     }
     setPage(item);
   };
-  const submitOrderData = (data: IOrderData) => setClientData(data);
+  const submitOrderData = (data: IOrderData) => setOrderData(data);
   const submitReceiptData = (data: IReceiptData) => setReceiptData(data);
 
   const views: Record<INavigation, JSX.Element | null> = {
@@ -80,10 +80,10 @@ const RenapView = ({ authProps }: IAuthProps) => {
         onSelectPage={selectPage}
       />
     ),    
-    preview: clientData ? (
+    preview: orderData ? (
       <PreviewView
         authContext={authProps}
-        client={clientData}
+        client={orderData}
         onSubmitReceiptData={submitReceiptData}
         onSelectPage={selectPage}
       />

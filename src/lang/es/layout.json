@@ -7,11 +7,15 @@
     }
   },
   "pages": {
-    "home": {
-      "title": "Ingrese su número de teléfono (Claro)",
-      "clientContract": {
-        "label": "Número telefónico",
-        "placeholder": "Ingresa el número telefónico"
+    "order": {
+      "title": "Datos del trámite",
+      "clientOrder": {
+        "label": "Evento",
+        "placeholder": "Seleccione un evento"
+      },
+      "copyCount": {
+        "label": "No. de copias",
+        "placeholder": "Seleccione No. de copias"
       }
     },
     "invoice": {
