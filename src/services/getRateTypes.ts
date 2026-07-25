@@ -17,7 +17,7 @@ const getRateTypes = async (
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";  
   const apiTipoTarifario = config?.apiRestPathsRenap.consultaTipoTarifario ?? "";
-  const apiTarifario = config?.apiRestPathsRenap.consultaTipoTarifario ?? "";
+  const apiTarifario = config?.apiRestPathsRenap.consultaTarifario ?? "";
 
   let tipoTarifarioResp: ITipoTarifarioRes;
   try {
@@ -26,11 +26,11 @@ const getRateTypes = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
   }
+  console.log("tipoTarifarioResp", JSON.stringify(tipoTarifarioResp));
 
   const result = tipoTarifarioResp?.Clta_TipoTarifario.resultado;
   const code = result?.codigo;
   const description = result?.value || t("msg.descriptions.default", { ns: "error" });
-
   if (code !== "1") {
     throw new Error(description);
   }
@@ -64,7 +64,7 @@ const getRateTypes = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }  
-
+  console.log("rateData", JSON.stringify(rateData));
   if (rateData?.Clta_Tarifario.resultado?.codigo !== "1") {
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }

@@ -7,6 +7,7 @@ import SuccessIcon from "@/assets/icons/success.svg";
 import TransmitIcon from "@/assets/icons/transmit.svg";
 import WarningModalIcon from "@/assets/icons/warning-modal.svg";
 import WarningIcon from "@/assets/icons/warning.svg";
+import DropdownChevronIcon from "@/assets/icons/dropdown-chevron.svg";
 
 export {
   CancelModalIcon,
@@ -18,4 +19,5 @@ export {
   TransmitIcon,
   WarningModalIcon,
   WarningIcon,
+  DropdownChevronIcon
 };

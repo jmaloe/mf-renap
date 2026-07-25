@@ -7,7 +7,7 @@
     }
   },
   "pages": {
-    "order": {
+    "home": {
       "title": "Datos del trámite",
       "rateType": {
         "label": "Evento",
@@ -79,24 +79,25 @@
   },
   "fields": {
     "optional": "(opcional)",
-    "service": {
-      "label": "Servicio",
-      "description": "Claro - Postpago"
+    "rateType": {
+      "label": "Evento",
+      "placeholder": "Seleccione un evento"
     },
-    "phone": {
-      "label": "Teléfono"
+    "copyNumbers": {
+      "label": "No. de copias",
+      "description": "Copy numbers"
+    },    
+    "unitPrice": {
+      "label": "Monto unitario"
+    },
+    "comission": {
+      "label": "Comisión"
+    },
+    "totalAmount": {
+      "label": "Total"
     },
     "invoice": {
       "label": "Factura"
-    },
-    "date": {
-      "label": "Fecha de factura"
-    },
-    "name": {
-      "label": "Nombre"
-    },
-    "amount": {
-      "label": "Monto a pagar"
-    }
+    }    
   }
 }

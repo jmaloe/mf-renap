@@ -22,7 +22,7 @@ const ClientView = ({ client, onSelectPage }: IProps) => {
   };
 
   const onCancel = () => {
-    onSelectPage("order");
+    onSelectPage("home");
   };
 
   return (

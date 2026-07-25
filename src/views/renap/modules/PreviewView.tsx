@@ -6,7 +6,7 @@ import type { INavigation } from "@/interfaces/components/navigation/INavigation
 import { FieldGroup } from "@/components/ui/field";
 import CancelButton from "@/components/buttons/CancelButton";
 import ReadOnlyField from "@/components/fields/ReadOnlyField";
-import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
+import type { ICobroSolicitudReq } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudReq";
 import type { IPaymentReq } from "@/interfaces/services/paymentData/IPaymentReq";
 import { useRequest } from "@/utils/http/useRequest";
 import renapPaymentService from "@/services/renapPaymentService";
@@ -22,7 +22,7 @@ import MainGroupButton from "@/components/buttons/MainGroupButton";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
-  client: IOrderData;
+  client: ICobroSolicitudReq;
   onSubmitReceiptData: (data: IReceiptData) => void;
   onSelectPage: (item: INavigation) => void;
 }>;
@@ -38,33 +38,22 @@ const PreviewView = ({
   const [onChangeModal, setOnChangeModal] = useState(false);
   const [modalData, setModalData] = useState<IModalData>();
 
-  const onSubmit = async () => {
-    const baseUrl = import.meta.env.BASE_URL;
-
+  const onSubmit = async () => {    
     const user = authContext?.user?.username ?? "";
-    const office = authContext?.user?.profile?.oficina ?? "";
-    const profileId = authContext?.user?.profile?.id ?? "";
-    const paymentData: IPaymentReq = {
-      contrato: client.telefono,
-      usuario: user,
-      caja_rural: office,
-      factura: client.factura,
-      url: baseUrl,
-      grupo: profileId,
-      valor: client.saldo,
-    };
+    const office = authContext?.user?.profile?.oficina ?? "";    
 
-    const { data, error } = await execute(() =>
-      renapPaymentService(paymentData, t, authContext),
+    const { data: resClientData, error: resClientError } = await execute(() =>
+      renapPaymentService(client, t, authContext),
     );
-    if (!data) {
+    if (!resClientData) {
       setModalData({
         title: t("msg.titles.invalidData", { ns: "error" }),
-        description: error || t("msg.descriptions.default", { ns: "error" }),
+        description:
+          resClientError || t("msg.descriptions.default", { ns: "error" }),
       });
       setOnChangeModal(true);
       return;
-    }
+    }    
 
     const userName = authContext?.user?.profile?.nombre ?? "";
     const userInitials = getInitials(

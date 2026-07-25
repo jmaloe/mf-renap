@@ -1,1 +1,1 @@
-export type INavigation = "error" | "order" | "preview" | "receipt";
+export type INavigation = "error" | "home" | "preview" | "receipt";
