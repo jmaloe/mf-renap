@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, type JSX } from "react";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import type { INavigation } from "@/interfaces/components/navigation/INavigation";
 import PreviewView from "@/views/renap/modules/PreviewView";
-import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import OrderView from "@/views/renap/modules/OrderView";
 import ReceiptView from "@/views/renap/modules/ReceiptView";
 import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
@@ -13,6 +12,7 @@ import MainLoader from "@/components/loader/MainLoader";
 import ErrorReprintView from "@/views/pages/reprint/ErrorReprintView";
 import { setCurrentScreen } from "@/utils/bootstrap/buildComponentId";
 import { setIsReprint } from "@/utils/bootstrap/buildReprint";
+import type { ICobroSolicitudRes } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudRes";
 
 type IAuthProps = Readonly<{
   authProps: IAuthContext;
@@ -23,7 +23,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState<INavigation>("order");
   const [errorMsg, setErrorMsg] = useState("");
-  const [orderData, setOrderData] = useState<IOrderData>();
+  const [orderData, setOrderData] = useState<ICobroSolicitudRes>();
   const [receiptData, setReceiptData] = useState<IReceiptData>();
   const hasLoadedRef = useRef(false);
 
@@ -68,7 +68,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
     }
     setPage(item);
   };
-  const submitOrderData = (data: IOrderData) => setOrderData(data);
+  const submitOrderData = (data: ICobroSolicitudRes) => setOrderData(data);
   const submitReceiptData = (data: IReceiptData) => setReceiptData(data);
 
   const views: Record<INavigation, JSX.Element | null> = {

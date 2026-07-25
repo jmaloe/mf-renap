@@ -9,7 +9,7 @@ import ReadOnlyField from "@/components/fields/ReadOnlyField";
 import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
 import type { IPaymentReq } from "@/interfaces/services/paymentData/IPaymentReq";
 import { useRequest } from "@/utils/http/useRequest";
-import postPaymentStatus from "@/services/postPaymentStatus";
+import renapPaymentService from "@/services/renapPaymentService";
 import type { IModalData } from "@/interfaces/components/modal/IModalData";
 import WarningModal from "@/components/modals/WarningModal";
 import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
@@ -55,7 +55,7 @@ const PreviewView = ({
     };
 
     const { data, error } = await execute(() =>
-      postPaymentStatus(paymentData, t, authContext),
+      renapPaymentService(paymentData, t, authContext),
     );
     if (!data) {
       setModalData({

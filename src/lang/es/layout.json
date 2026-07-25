@@ -9,7 +9,7 @@
   "pages": {
     "order": {
       "title": "Datos del trámite",
-      "clientOrder": {
+      "rateType": {
         "label": "Evento",
         "placeholder": "Seleccione un evento"
       },

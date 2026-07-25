@@ -1,7 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { FieldGroup } from "@/components/ui/field";
@@ -11,16 +11,20 @@ import MainInput from "@/components/fields/MainInput";
 import WarningModal from "@/components/modals/WarningModal";
 import type { IModalData } from "@/interfaces/components/modal/IModalData";
 import { useRequest } from "@/utils/http/useRequest";
-import getTipoTarifario from "@/services/getClientData";
-import type { IOrderReq } from "@/interfaces/services/orderData/IOrderReq";
-import type { IOrderData } from "@/interfaces/services/orderData/IOrderData";
+import getRateTypes from "@/services/getRateTypes";
+import renapPaymentService from "@/services/renapPaymentService";
+import type { ICobroSolicitudReq } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudReq";
+import type { ICobroSolicitudRes } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudRes";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import MainFormCard from "@/components/cards/MainFormCard";
 import MainGroupButton from "@/components/buttons/MainGroupButton";
+import type { ITipoTarifarioReq } from "@/interfaces/services/consultaTipoTarifario/ITipoTarifarioReq";
+import type { ITarifarioItems } from "@/interfaces/services/consultaTarifario/ITarifarioItems";
+import type { ITarifarioRes } from "@/interfaces/services/consultaTarifario/ITarifarioRes";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
-  onSubmitOrderData: (data: IOrderData) => void;
+  onSubmitOrderData: (data: ICobroSolicitudRes) => void;
   onSelectPage: (item: INavigation) => void;
 }>;
 
@@ -30,27 +34,53 @@ const OrderView = ({
   onSelectPage,
 }: IProps) => {
   const { t } = useTranslation();
-  const { loading, execute } = useRequest<IOrderData>();
+  const { loading, execute } = useRequest<ICobroSolicitudRes>();
+  const { loading: loadingRateTypes, execute: executeRateTypes } = useRequest<ITarifarioRes>();
   const [onChangeModal, setOnChangeModal] = useState(false);
   const [modalData, setModalData] = useState<IModalData>();
+  const [rateTypes, setRateTypes] = useState<ITarifarioItems[]>([]);
 
   const formSchema = z.object({
-    clientOrder: z
+    rateType: z
       .string()
       .trim()
-      .nonempty(t("field.clientOrder.nonEmpty", { ns: "error" }))
-      .regex(/^\d+$/, t("field.clientOrder.digit", { ns: "error" }))
-      .length(8, t("field.clientOrder.length", { ns: "error" })),
+      .nonempty(t("field.rateType.nonEmpty", { ns: "error" }))
+      .regex(/^\d+$/, t("field.rateType.digit", { ns: "error" }))
+      .length(8, t("field.rateType.length", { ns: "error" })),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      clientOrder: "",
+      rateType: "",
     },
     mode: "onChange",
     reValidateMode: "onChange",
   });
+
+  useEffect(() => {
+    const fetchRateTypes = async () => {
+      const rateType:ITipoTarifarioReq = {
+        Clta_TipoTarifario: {
+          oficina: authContext?.user?.profile?.oficina ?? ""
+        }
+      } 
+      const { data: resClientData, error: resClientError } = await executeRateTypes(() =>
+        getRateTypes(rateType, t, authContext)
+      );
+      if (!resClientData) {
+        setModalData({
+          title: t("msg.titles.invalidData", { ns: "error" }),
+          description:
+            resClientError || t("msg.descriptions.default", { ns: "error" }),
+        });
+        setOnChangeModal(true);
+        return;
+      }
+      setRateTypes(resClientData?.Clta_Tarifario?.datos ?? []);
+    };
+    fetchRateTypes();
+  }, [authContext]);    
 
   const onSubmit = async (form: z.infer<typeof formSchema>) => {
     const baseUrl = import.meta.env.BASE_URL;
@@ -58,16 +88,23 @@ const OrderView = ({
     const user = authContext?.user?.username ?? "";
     const office = authContext?.user?.profile?.oficina ?? "";
     const profileId = authContext?.user?.profile?.id ?? "";
-    const orderData: IOrderReq = {
-      contrato: form.clientOrder,
+    const orderData: ICobroSolicitudReq = {      
+      codigo_evento: form.rateType,      
       usuario: user,
       caja_rural: office,
       url: baseUrl,
       grupo: profileId,
+      monto: "",
+      cantidad_copias: "",
+      tipo_tarifa: "",
+      orden_pago: "",
+      total_pagar: "",
+      ip: "",
+      nombre_evento: ""
     };
 
     const { data: resClientData, error: resClientError } = await execute(() =>
-      getTipoTarifario(orderData, t, authContext),
+      renapPaymentService(orderData, t, authContext),
     );
     if (!resClientData) {
       setModalData({
@@ -91,15 +128,15 @@ const OrderView = ({
     >
       <FieldGroup>
         <Controller
-          name="clientOrder"
+          name="rateType"
           control={form.control}
           render={({ field, fieldState }) => (
             <MainInput
-              id="clientOrder"
-              label={t("pages.order.clientOrder.label")}
+              id="rateType"
+              label={t("pages.order.rateType.label")}
               field={field}
               fieldState={fieldState}
-              placeholder={t("pages.order.clientOrder.placeholder")}
+              placeholder={t("pages.order.rateType.placeholder")}
               size={10}
               maxLength={8}
             />
