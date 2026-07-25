@@ -10,4 +10,14 @@ export type IReceiptData = Readonly<{
   userInitials: string;
   department: string;
   city: string;
+
+  secuencial: string;
+  secuencial_comision: string;
+  referencia: string;
+  boleta_pago: string;
+  recibo: string;
+  fecha: string;
+  linea_1: string;
+  linea_2: string;
+  linea_3: string;
 }>;

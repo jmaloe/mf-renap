@@ -7,34 +7,36 @@ import { FieldGroup } from "@/components/ui/field";
 import CancelButton from "@/components/buttons/CancelButton";
 import ReadOnlyField from "@/components/fields/ReadOnlyField";
 import type { ICobroSolicitudReq } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudReq";
-import type { IPaymentReq } from "@/interfaces/services/paymentData/IPaymentReq";
 import { useRequest } from "@/utils/http/useRequest";
 import renapPaymentService from "@/services/renapPaymentService";
 import type { IModalData } from "@/interfaces/components/modal/IModalData";
 import WarningModal from "@/components/modals/WarningModal";
 import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
-import type { IPaymentData } from "@/interfaces/services/paymentData/IPaymentData";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import getInitials from "@/utils/formats/getInitials";
 import type { IReadOnlyField } from "@/interfaces/components/fields/IReadOnlyField";
 import MainFormCard from "@/components/cards/MainFormCard";
 import MainGroupButton from "@/components/buttons/MainGroupButton";
+import type { IConsultaComisionRes } from "@/interfaces/services/consultaComision/IConsultaComisionRes";
+import type { ICobroSolicitudRes } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudRes";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
   client: ICobroSolicitudReq;
+  comission: IConsultaComisionRes;
   onSubmitReceiptData: (data: IReceiptData) => void;
-  onSelectPage: (item: INavigation) => void;
+  onSelectPage: (item: INavigation) => void;  
 }>;
 
 const PreviewView = ({
   authContext,
   client,
+  comission,
   onSubmitReceiptData,
   onSelectPage,
 }: IProps) => {
   const { t } = useTranslation();
-  const { loading, execute } = useRequest<IPaymentData>();
+  const { loading, execute } = useRequest<ICobroSolicitudRes>();
   const [onChangeModal, setOnChangeModal] = useState(false);
   const [modalData, setModalData] = useState<IModalData>();
 
@@ -63,17 +65,26 @@ const PreviewView = ({
       authContext?.user?.profile?.departmentData?.departamento ?? "";
     const city = authContext?.user?.profile?.departmentData?.municipio ?? "";
     const receiptData: IReceiptData = {
-      payment: client.telefono,
-      amount: client.saldo,
-      invoice: client.factura,
-      receiptNumber: data.referencia,
-      date: data.dateTime,
+      payment: "client.telefono",
+      amount: "client.saldo",
+      invoice: "client.factura",
+      receiptNumber: "data.referencia",
+      date: "data.dateTime",
       office: office,
       user: user,
       userName: userName,
       userInitials: userInitials,
       department: department,
       city: city,
+      secuencial: "string",
+      secuencial_comision: "string",
+      referencia: "string",
+      boleta_pago: "string",
+      recibo: "string",
+      fecha: "string",
+      linea_1: "string",
+      linea_2: "string",
+      linea_3: "string"
     };
 
     onSubmitReceiptData(receiptData);
@@ -87,29 +98,24 @@ const PreviewView = ({
       description: t("fields.service.description"),
     },
     {
-      id: "paymentPhone",
-      label: t("fields.phone.label"),
-      description: client.telefono,
+      id: "copyNumbers",
+      label: t("fields.copyNumbers.label"),
+      description: client.cantidad_copias,
     },
     {
-      id: "paymentName",
-      label: t("fields.name.label"),
-      description: client.nombre,
+      id: "unitPrice",
+      label: t("fields.unitProce.label"),
+      description: client.monto,
     },
     {
-      id: "paymentInvoice",
-      label: t("fields.invoice.label"),
-      description: client.factura,
-    },
-    {
-      id: "paymentDate",
-      label: t("fields.date.label"),
-      description: client.fecha,
+      id: "comission",
+      label: t("fields.comission.label"),
+      description: `${comission.consulta_comision?.datos?.money ?? "0.00"}`,
     },
     {
       id: "paymentAmount",
-      label: t("fields.amount.label"),
-      description: client.saldo,
+      label: t("fields.totalAmount.label"),
+      description: client.total_pagar,
     },
   ];
 
