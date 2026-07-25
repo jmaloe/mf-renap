@@ -4,13 +4,19 @@
     "runtime": "/config/mf-config.json",
     "remotes": "/config/mf-hub-remotes.json"
   },
-  "apiBaseUrl": "https://....banrural.com.gt",
+  "apiBaseUrl": "https://195405a1-d600-4d82-a882-5a58f76dc0b1.mock.pstmn.io",
   "apiRestPaths": {
-    "verifyAccess": "/ws_cr_gestiones_admon/v1/verificar-acceso",
-    "phoneNumber": "/ws_cr_claro_postpago/v1/consulta",
-    "validAmount": "/ws_cr_gestiones_admon/v1/validar-monto",
-    "paidData": "/ws_cr_claro_postpago/v1/pago",
+    "verifyAccess": "/ws_cr_gestiones_admon/v1/verificar-acceso",    
     "detailTransaction": "/ws_reimprime_boletas_cr/v1/detalle_transacciones",
     "dateTimeData": "https://....banrural.com.gt/api-time"
+  },
+  "apiBaseUrlRenap": "https://195405a1-d600-4d82-a882-5a58f76dc0b1.mock.pstmn.io",
+  "apiRestPathsRenap": {
+    "consultaTipoTarifario": "/api_cap_renap/Clta_TipoTarifario",
+    "consultaTarifario": "/api_cap_renap/Clta_Tarifario",
+    "consultaParametro": "/ws_cr_gen_parametro/v1/consulta_parametro",
+    "consultaComision": "/ws_cr_pago_comision/v1/consultaComision",
+    "ingresoTransaccion": "/ws_cr_pago_renap/v1/ingreso_transaccion",
+    "cobroSolicitud": "/ws_cr_pago_renap/v1/cobro_solicitud"
   }
 }
