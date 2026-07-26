@@ -2,6 +2,7 @@ export type ICobroSolicitudReq = Readonly<{
   codigo_evento: string;
   monto: string;
   cantidad_copias: string;
+  comision: string;
   tipo_tarifa: string;
   orden_pago: string;
   total_pagar: string;

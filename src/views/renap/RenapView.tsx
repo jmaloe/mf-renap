@@ -1,18 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState, type JSX } from "react";
-
-import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
-import type { INavigation } from "@/interfaces/components/navigation/INavigation";
 import PreviewView from "@/views/renap/modules/PreviewView";
 import OrderView from "@/views/renap/modules/OrderView";
 import ReceiptView from "@/views/renap/modules/ReceiptView";
-import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
 import getReprintData from "@/services/getReprintData";
 import MainLoader from "@/components/loader/MainLoader";
 import ErrorReprintView from "@/views/pages/reprint/ErrorReprintView";
 import { setCurrentScreen } from "@/utils/bootstrap/buildComponentId";
 import { setIsReprint } from "@/utils/bootstrap/buildReprint";
-import type { ICobroSolicitudRes } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudRes";
+
+import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
+import type { INavigation } from "@/interfaces/components/navigation/INavigation";
+import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
 import type { ICobroSolicitudReq } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudReq";
 
 type IAuthProps = Readonly<{
@@ -86,7 +85,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
         authContext={authProps}
         client={orderData}
         onSubmitReceiptData={submitReceiptData}
-        onSelectPage={selectPage}
+        onSelectPage={selectPage}        
       />
     ) : null,
     receipt: receiptData ? (

@@ -14,6 +14,7 @@ export type ICobroSolicitudRes = Readonly<{
       linea_1: string;
       linea_2: string;
       linea_3: string;
+      dateTime: string;
     };
   };
 }>;

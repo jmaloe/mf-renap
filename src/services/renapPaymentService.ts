@@ -1,12 +1,19 @@
 import type { TFunction } from "i18next";
+
 import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
-import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import validateHour from "@/utils/errors/validateHour";
 import { http } from "@/utils/http/httpClient";
+
 import type { ICobroSolicitudReq } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudReq";
 import type { ICobroSolicitudRes } from "@/interfaces/services/cobroSolicitud/ICobroSolicitudRes";
+import type { IEnv } from "@/interfaces/components/env/IEnv";
+import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 
-const renapPaymentService = async (
+type DateAndTimeResponse = {
+  data: { datetime: string; date: string; time: string };
+};
+
+export const renapPaymentService = async (
   client: ICobroSolicitudReq,
   t: TFunction,
   authContext?: IAuthContext | null,
@@ -40,9 +47,17 @@ const renapPaymentService = async (
   const data = result?.datos;
   if (!data) {
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
-  }
+  }  
 
   return paymentData;
 };
 
-export default renapPaymentService;
+export const getDateAndTime = async (config: IEnv, t: TFunction, token: string) => {
+  const endpoint = config.apiRestPaths.dateTimeData ?? "";
+  const response = await http.get<DateAndTimeResponse>(endpoint, token);
+  if (response?.data?.datetime) {
+    return response.data.datetime;
+  }
+  throw new Error(t("msg.descriptions.noDateTimeServiceResponse", { ns: "error" }));
+};
+

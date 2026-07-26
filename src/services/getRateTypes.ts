@@ -1,13 +1,13 @@
 import type { TFunction } from "i18next";
 
+import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
+import { http } from "@/utils/http/httpClient";
+
 import type { ITipoTarifarioReq } from "@/interfaces/services/consultaTipoTarifario/ITipoTarifarioReq";
 import type { ITipoTarifarioRes } from "@/interfaces/services/consultaTipoTarifario/ITipoTarifarioRes";
 import type { ITarifarioReq } from "@/interfaces/services/consultaTarifario/ITarifarioReq";
 import type { ITarifarioRes } from "@/interfaces/services/consultaTarifario/ITarifarioRes";
-
-import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
 import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
-import { http } from "@/utils/http/httpClient";
 
 const getRateTypes = async (
   client: ITipoTarifarioReq,
@@ -26,7 +26,6 @@ const getRateTypes = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
   }
-  console.log("tipoTarifarioResp", JSON.stringify(tipoTarifarioResp));
 
   const result = tipoTarifarioResp?.Clta_TipoTarifario.resultado;
   const code = result?.codigo;
@@ -64,7 +63,7 @@ const getRateTypes = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }  
-  console.log("rateData", JSON.stringify(rateData));
+  
   if (rateData?.Clta_Tarifario.resultado?.codigo !== "1") {
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }

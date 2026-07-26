@@ -1,9 +1,9 @@
 import type { TFunction } from "i18next";
-import type { IConsultaParametroRes } from "@/interfaces/services/consultaParametro/IConsultaParametroRes";
-
-import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
-import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import { http } from "@/utils/http/httpClient";
+import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
+
+import type { IConsultaParametroRes } from "@/interfaces/services/consultaParametro/IConsultaParametroRes";
+import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 
 const getParameterQuery = async (  
   t: TFunction,
@@ -30,7 +30,6 @@ const getParameterQuery = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }  
-  console.log("parameterQueryResponse", JSON.stringify(parameterQueryResponse));
   if (parameterQueryResponse?.consulta_parametro?.resultado.codigo !== "1") {
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }

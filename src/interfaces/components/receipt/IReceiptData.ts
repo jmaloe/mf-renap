@@ -10,7 +10,6 @@ export type IReceiptData = Readonly<{
   userInitials: string;
   department: string;
   city: string;
-
   secuencial: string;
   secuencial_comision: string;
   referencia: string;

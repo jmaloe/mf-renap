@@ -1,25 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useTranslation } from "react-i18next";
-
 import CancelButton from "@/components/buttons/CancelButton";
 import TransmitButton from "@/components/buttons/TransmitButton";
 import PrintTypeRadioButton from "@/components/radios/PrintTypeRadioButton";
-import type { INavigation } from "@/interfaces/components/navigation/INavigation";
-import type { IPrintNavigation } from "@/interfaces/components/navigation/IPrintNavigation";
 import VoucherView from "@/views/pages/receipts/VoucherView";
 import LetterView from "@/views/pages/receipts/LetterView";
-import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
 import WarningAlert from "@/components/alerts/WarningAlert";
-import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 import useAutoScale from "@/hooks/useAutoScale";
+import PrintCard from "@/components/cards/PrintCard";
+import MainGroupButton from "@/components/buttons/MainGroupButton";
 import {
   letterSize,
   printTypes,
   voucherSize,
 } from "@/utils/constants/receiptData";
-import PrintCard from "@/components/cards/PrintCard";
-import MainGroupButton from "@/components/buttons/MainGroupButton";
+
+import type { INavigation } from "@/interfaces/components/navigation/INavigation";
+import type { IPrintNavigation } from "@/interfaces/components/navigation/IPrintNavigation";
+import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
+import type { IAuthContext } from "@/interfaces/auth/IAuthContext";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;

@@ -24,7 +24,8 @@
       "invalidParameters": "Los parámetros de la transacción no son válidos.", 
       "outOfHours": "El servicio no se encuentra disponible en estos momentos, el horario establecido es de 8:00 a 20:00 horas.",
       "noDataTransaction": "No se obtuvo resultados.",
-      "noResponseService": "Ocurrio un error en la respuesta del Web Service."
+      "noResponseService": "Ocurrio un error en la respuesta del Web Service.",
+      "noDateTimeServiceResponse": "No fue posible obtener la fecha y hora de la transacción."
     }
   }
 }
