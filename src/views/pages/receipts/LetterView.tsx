@@ -24,9 +24,9 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
   const height = halfHeight + "px";
   const suffix: ISuffixLetter = isSecond ? "Second" : "First";
 
-  const contract = t("receipts.data.contract").toUpperCase() + " ";
-  const currencySymbol = t("receipts.data.currencySymbol").toUpperCase() + " ";
-  const invoiceSymbol = t("receipts.data.invoiceSymbol") + " ";
+  const contract = t("receipts.data.contract").toUpperCase();
+  const currencySymbol = t("receipts.data.currencySymbol").toUpperCase();
+  const invoiceSymbol = t("receipts.data.invoiceSymbol");
   const isReprint = getIsReprint();
   const fields: IFieldData[] = isReprint
     ? [
@@ -40,11 +40,11 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
           key: "payment",
           label: t("receipts.data.payment"),
           value: contract,
-        },        
+        },
         {
-          key: "invoice",
-          label: t("receipts.data.invoice"),
-          value: receipt.invoice.toUpperCase(),
+          key: "referenceNumber",
+          label: t("receipts.data.referenceNumber"),
+          value: receipt.referencia,
         },
         {
           key: "concept",
@@ -61,13 +61,22 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
           key: "amount",
           label: t("receipts.data.amount"),
           value: currencySymbol + receipt.amount,
-        },               
+        },                               
+        {
+          key: "invoice",
+          label: t("receipts.data.invoice"),
+          value: receipt.invoice,
+        },
         {
           key: "receiptNumber",
           label: t("receipts.data.receiptNumber"),
           value: receipt.receiptNumber,
         },
-        { key: "date", label: t("receipts.data.date"), value: receipt.date },
+        { 
+          key: "date", 
+          label: t("receipts.data.date"), 
+          value: receipt.date 
+        },
         {
           key: "bottom",
           label: "",
@@ -82,15 +91,16 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
           value: contract,
         },
         {
-          key: "invoice",
-          label: t("receipts.data.invoice"),
-          value: invoiceSymbol + receipt.invoice.toUpperCase(),
+          key: "referenceNumber",
+          label: t("receipts.data.referenceNumber"),
+          value: receipt.referencia,
         },
         {
           key: "concept",
           label: t("receipts.data.concept"),
           value: receipt.serviceName,
-        },
+          hasReprint: true,
+        }, 
         {
           key: "copyNumber",
           label: t("receipts.data.copynumbers"),
@@ -100,12 +110,21 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
           key: "amount",
           label: t("receipts.data.amount"),
           value: currencySymbol + receipt.amount,
+        },                               
+        {
+          key: "invoice",
+          label: t("receipts.data.invoice"),
+          value: receipt.invoice,
         },
-        { key: "date", label: t("receipts.data.date"), value: receipt.date },        
         {
           key: "receiptNumber",
           label: t("receipts.data.receiptNumber"),
           value: receipt.receiptNumber,
+        },
+        { 
+          key: "date", 
+          label: t("receipts.data.date"), 
+          value: receipt.date 
         },
       ];
 

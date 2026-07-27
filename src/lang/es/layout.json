@@ -33,7 +33,8 @@
       "invoice": "Nota de pago:",
       "invoiceSymbol": "",
       "concept": "Tramite:",
-      "receiptNumber": "Número de boleta:",
+      "receiptNumber": "Correlativo CGC No.:",
+      "referenceNumber": "Referencia No:",      
       "date": "Fecha:"
     },
     "userData": {
