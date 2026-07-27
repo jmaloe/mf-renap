@@ -30,7 +30,8 @@ const getParameterQuery = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }  
-  if (parameterQueryResponse?.consulta_parametro?.resultado.codigo !== "1") {
+  console.log("parameterQueryResponse", JSON.stringify(parameterQueryResponse));
+  if (parameterQueryResponse?.consulta_parametro?.resultado.codigo !== 1) {
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }
 

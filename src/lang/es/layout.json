@@ -77,8 +77,17 @@
       "letter": "Impresora de tinta: Boletas media carta."
     }
   },
+  "dropdown": {
+    "placeholder": {
+      "default": "Seleccione",
+      "noData": "No se encontraron datos"
+    }
+  },
   "fields": {
     "optional": "(opcional)",
+    "service": {
+      "label": "Verifique los siguientes datos"
+    },
     "rateType": {
       "label": "Evento",
       "placeholder": "Seleccione un evento"
@@ -86,15 +95,15 @@
     "copyNumbers": {
       "label": "No. de copias",
       "description": "Copy numbers"
-    },    
-    "unitPrice": {
+    },        
+    "amount": {
       "label": "Monto unitario"
     },
-    "comission": {
-      "label": "Comisión"
+    "commission": {
+      "label": "Monto comisión"
     },
     "totalAmount": {
-      "label": "Total"
+      "label": "Monto a pagar"
     },
     "invoice": {
       "label": "Factura"

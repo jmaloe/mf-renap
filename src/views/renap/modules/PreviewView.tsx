@@ -103,13 +103,13 @@ const PreviewView = ({
       description: client.cantidad_copias ?? "0.00",
     },
     {
-      id: "unitPrice",
-      label: t("fields.unitPrice.label"),
+      id: "amount",
+      label: t("fields.amount.label"),
       description: client.monto ?? "0.00",
     },
     {
       id: "comission",
-      label: t("fields.comission.label"),
+      label: t("fields.commission.label"),
       description: `${client.comision ?? "0.00"}`,
     },
     {

@@ -30,7 +30,7 @@ const getRateTypes = async (
   const result = tipoTarifarioResp?.Clta_TipoTarifario.resultado;
   const code = result?.codigo;
   const description = result?.value || t("msg.descriptions.default", { ns: "error" });
-  if (code !== "1") {
+  if (String(code) !== "1") {
     throw new Error(description);
   }
 
@@ -61,10 +61,10 @@ const getRateTypes = async (
     );
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
-    throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
+    throw new Error(t("msg.descriptions.default", { ns: "error" }));
   }  
-  
-  if (rateData?.Clta_Tarifario.resultado?.codigo !== "1") {
+  console.log("rateData", JSON.stringify(rateData));
+  if (Number(rateData?.Clta_Tarifario.resultado?.codigo) !== 1) {
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }
 

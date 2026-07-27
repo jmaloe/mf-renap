@@ -53,7 +53,9 @@ const ComboBoxField = ({
   }, [value]);
 
   useEffect(() => {
-    if (items.length === 1) onChange(items[0]);
+    if (items.length === 1) {
+      onChange(items[0]);
+    }
   }, [items, onChange]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const ComboBoxField = ({
         !contenedorRef.current.contains(e.target as Node)
       ) {
         const match = items.find(
-          (item) => item.label.toLowerCase() === filter.toLowerCase(),
+          (item) => (item.label ?? "").toLowerCase() === filter.toLowerCase(),
         );
 
         if (match) {
@@ -88,19 +90,28 @@ const ComboBoxField = ({
   }, [filter, items, onChange, value]);
 
   const toggleDropdown = () => {
-    setOpen((prev) => !prev);
-    setShowAll(!open && value !== null);
+    const nextOpen = !open;
+    setOpen(nextOpen);
+    setShowAll(true);
+    setFilter(value ? value.label : "");
   };
 
   const openDropdown = () => {
+    if (loading) return;
     setOpen(true);
-    setShowAll(value !== null);
+    setShowAll(true);
+    setFilter(value ? value.label : "");
   };
+
+  const normalizedItems = items.map((item) => ({
+    value: String(item.value ?? ""),
+    label: String(item.label ?? ""),
+  }));
 
   const itemsFilter =
     showAll && !!value
-      ? items
-      : items.filter((item) =>
+      ? normalizedItems
+      : normalizedItems.filter((item) =>
           item.label.toLowerCase().includes(filter.toLowerCase()),
         );
 

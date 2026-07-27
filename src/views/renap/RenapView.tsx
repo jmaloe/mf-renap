@@ -68,7 +68,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
     }
     setPage(item);
   };
-  const submitOrderData = (data: ICobroSolicitudReq) => setOrderData(data);
+  const submitRenapServiceData = (data: ICobroSolicitudReq) => setOrderData(data);
   const submitReceiptData = (data: IReceiptData) => setReceiptData(data);
 
   const views: Record<INavigation, JSX.Element | null> = {
@@ -76,7 +76,7 @@ const RenapView = ({ authProps }: IAuthProps) => {
     home: (
       <OrderView
         authContext={authProps}
-        onSubmitOrderData={submitOrderData}
+        onSubmitOrderData={submitRenapServiceData}
         onSelectPage={selectPage}
       />
     ),    

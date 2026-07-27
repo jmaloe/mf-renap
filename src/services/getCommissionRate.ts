@@ -12,13 +12,13 @@ const getCommissionRate = async (
 ): Promise<IConsultaComisionRes> => {
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";    
-  const apiComission = config?.apiRestPathsRenap.consultaParametro ?? "";  
+  const apiCommission = config?.apiRestPathsRenap.consultaComision ?? "";  
 
   let serviceCommissionResponse: IConsultaComisionRes;      
   
   try {
     serviceCommissionResponse = await http.post<IConsultaComisionRes>(
-      apiComission,
+      apiCommission,
       token,
       client      
     );
@@ -26,8 +26,8 @@ const getCommissionRate = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }  
-  
-  if (serviceCommissionResponse?.consulta_comision?.resultado.codigo !== "1") {
+  console.log("comisionResponse", JSON.stringify(serviceCommissionResponse));
+  if (Number(serviceCommissionResponse?.consulta_comision?.resultado.codigo) !== 1) {
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }
 

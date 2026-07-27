@@ -4,17 +4,17 @@
     "runtime": "/config/mf-config.json",
     "remotes": "/config/mf-hub-remotes.json"
   },
-  "apiBaseUrl": "https://195405a1-d600-4d82-a882-5a58f76dc0b1.mock.pstmn.io",
+  "apiBaseUrl": "https://....banrural.com.gt",
   "apiRestPaths": {
     "verifyAccess": "/ws_cr_gestiones_admon/v1/verificar-acceso",    
     "detailTransaction": "/ws_reimprime_boletas_cr/v1/detalle_transacciones",
     "dateTimeData": "https://....banrural.com.gt/api-time"
   },
-  "apiBaseUrlRenap": "https://195405a1-d600-4d82-a882-5a58f76dc0b1.mock.pstmn.io",
+  "apiBaseUrlRenap": "https://....banrural.com.gt",
   "apiRestPathsRenap": {
     "consultaTipoTarifario": "/api_cap_renap/Clta_TipoTarifario",
     "consultaTarifario": "/api_cap_renap/Clta_Tarifario",
-    "consultaParametro": "/ws_cr_gen_parametro/v1/consulta_parametro",
+    "consultaParametro": "/ws_cr_gen_parametro/v1/consulta_parametro?nemonico=NCR&tipo=T&producto=CR",
     "consultaComision": "/ws_cr_pago_comision/v1/consultaComision",
     "ingresoTransaccion": "/ws_cr_pago_renap/v1/ingreso_transaccion",
     "cobroSolicitud": "/ws_cr_pago_renap/v1/cobro_solicitud"

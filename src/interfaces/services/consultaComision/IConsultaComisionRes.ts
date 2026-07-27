@@ -1,7 +1,7 @@
 export type IConsultaComisionRes = Readonly<{
     consulta_comision: {
         resultado: {
-            codigo: string;
+            codigo: number;
             descripcion: string;
         };
         datos?: {

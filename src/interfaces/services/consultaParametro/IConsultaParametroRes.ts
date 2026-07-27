@@ -1,7 +1,7 @@
 export type IConsultaParametroRes = Readonly<{
     consulta_parametro: {
         resultado: {
-            codigo: string;
+            codigo: number;
             descripcion: string;
         };
         datos?: {
