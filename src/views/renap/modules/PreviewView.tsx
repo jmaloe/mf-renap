@@ -66,7 +66,7 @@ const PreviewView = ({
     const transactionDateTime = await getDateAndTime(config, t, authContext?.token ?? "");
     const receiptData: IReceiptData = {
       payment: client.total_pagar ?? "",
-      amount: client.monto ?? "",
+      amount: client.total_pagar ?? "",
       invoice: serviceResponseData?.boleta_pago ?? "",
       receiptNumber: serviceResponseData?.recibo ?? "",
       date: transactionDateTime ?? "",
@@ -84,7 +84,9 @@ const PreviewView = ({
       fecha: serviceResponseData?.fecha ?? "",
       linea_1: serviceResponseData?.linea_1 ?? "",
       linea_2: serviceResponseData?.linea_2 ?? "",
-      linea_3: serviceResponseData?.linea_3 ?? ""
+      linea_3: serviceResponseData?.linea_3 ?? "",
+      copyNumbers: Number(client.cantidad_copias) ?? 0,
+      serviceName: client.nombre_evento
     };
 
     onSubmitReceiptData(receiptData);

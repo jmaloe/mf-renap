@@ -63,7 +63,7 @@ const getRateTypes = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
   }  
-  console.log("rateData", JSON.stringify(rateData));
+  
   if (Number(rateData?.Clta_Tarifario.resultado?.codigo) !== 1) {
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));
   }

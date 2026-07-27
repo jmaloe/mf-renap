@@ -26,7 +26,7 @@ const getCommissionRate = async (
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }  
-  console.log("comisionResponse", JSON.stringify(serviceCommissionResponse));
+  
   if (Number(serviceCommissionResponse?.consulta_comision?.resultado.codigo) !== 1) {
     throw new Error(t("msg.descriptions.invalidParameters", { ns: "error" }));
   }

@@ -25,13 +25,14 @@
   "receipts": {
     "title": "Pago de Servicios",
     "data": {
-      "contract": "Teléfono:",
-      "payment": "Pago de:",
-      "amount": "Por un valor de:",
-      "currencySymbol": "Q.",
-      "invoice": "Factura:",
-      "invoiceSymbol": "No.",
-      "concept": "Por concepto de:",
+      "contract": "RENAP",
+      "payment": "Pago de servicio:",
+      "amount": "Monto:",
+      "copynumbers": "No. copias:",
+      "currencySymbol": "Q",
+      "invoice": "Nota de pago:",
+      "invoiceSymbol": "",
+      "concept": "Tramite:",
       "receiptNumber": "Número de boleta:",
       "date": "Fecha:"
     },

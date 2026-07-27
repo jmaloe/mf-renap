@@ -39,13 +39,8 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
         {
           key: "payment",
           label: t("receipts.data.payment"),
-          value: contract + receipt.payment,
-        },
-        {
-          key: "amount",
-          label: t("receipts.data.amount"),
-          value: currencySymbol + receipt.amount,
-        },
+          value: contract,
+        },        
         {
           key: "invoice",
           label: t("receipts.data.invoice"),
@@ -54,9 +49,19 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
         {
           key: "concept",
           label: t("receipts.data.concept"),
-          value: t("receipts.letter.concept").toUpperCase(),
+          value: receipt.serviceName,
           hasReprint: true,
+        }, 
+        {
+          key: "copyNumber",
+          label: t("receipts.data.copynumbers"),
+          value: String(receipt.copyNumbers)
         },
+        {
+          key: "amount",
+          label: t("receipts.data.amount"),
+          value: currencySymbol + receipt.amount,
+        },               
         {
           key: "receiptNumber",
           label: t("receipts.data.receiptNumber"),
@@ -74,7 +79,7 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
         {
           key: "payment",
           label: t("receipts.data.payment"),
-          value: contract + receipt.payment,
+          value: contract,
         },
         {
           key: "invoice",
@@ -82,16 +87,21 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
           value: invoiceSymbol + receipt.invoice.toUpperCase(),
         },
         {
+          key: "concept",
+          label: t("receipts.data.concept"),
+          value: receipt.serviceName,
+        },
+        {
+          key: "copyNumber",
+          label: t("receipts.data.copynumbers"),
+          value: String(receipt.copyNumbers)
+        },
+        {
           key: "amount",
           label: t("receipts.data.amount"),
           value: currencySymbol + receipt.amount,
         },
-        { key: "date", label: t("receipts.data.date"), value: receipt.date },
-        {
-          key: "concept",
-          label: t("receipts.data.concept"),
-          value: t("receipts.letter.concept").toUpperCase(),
-        },
+        { key: "date", label: t("receipts.data.date"), value: receipt.date },        
         {
           key: "receiptNumber",
           label: t("receipts.data.receiptNumber"),

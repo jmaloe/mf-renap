@@ -40,7 +40,7 @@ export const renapPaymentService = async (
   const code = result?.resultado?.codigo;
   const description = result?.resultado.descripcion || t("msg.descriptions.default", { ns: "error" });
 
-  if (code !== "1") {
+  if (String(code) !== "1") {
     throw new Error(description);
   }
 
@@ -55,6 +55,7 @@ export const renapPaymentService = async (
 export const getDateAndTime = async (config: IEnv, t: TFunction, token: string) => {
   const endpoint = config.apiRestPaths.dateTimeData ?? "";
   const response = await http.get<DateAndTimeResponse>(endpoint, token);
+  
   if (response?.data?.datetime) {
     return response.data.datetime;
   }

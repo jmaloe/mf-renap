@@ -11,5 +11,5 @@ export type ICobroSolicitudReq = Readonly<{
   grupo: string;
   url: string;
   ip: string;
-  nombre_evento: string;
+  nombre_evento: string;  
 }>;

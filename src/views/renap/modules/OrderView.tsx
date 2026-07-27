@@ -88,7 +88,7 @@ const OrderView = ({
       total_pagar: getFormatNumber(`${totalAmount}`) ?? "0.00",
       ip: clientIp,
       nombre_evento: rateTypeSelected?.label ?? "NE",
-      comision: getFormatNumber(`${commissionData?.consulta_comision?.datos?.money ?? "0"}`) ?? "0.00"
+      comision: getFormatNumber(`${commissionData?.consulta_comision?.datos?.money ?? "0"}`) ?? "0.00"      
     };
     
     onSubmitOrderData(orderData);

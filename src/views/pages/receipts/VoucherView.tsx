@@ -29,7 +29,7 @@ const VoucherView = ({ receipt, size }: IProps) => {
     {
       key: "payment",
       label: t("receipts.data.payment"),
-      value: contract + receipt.payment,
+      value: contract,
     },
     {
       key: "amount",
@@ -37,15 +37,15 @@ const VoucherView = ({ receipt, size }: IProps) => {
       value: currencySymbol + receipt.amount,
     },
     {
-      key: "invoice",
-      label: t("receipts.data.invoice"),
-      value: receipt.invoice,
-    },
-    {
       key: "concept",
       label: t("receipts.data.concept"),
       value: t("receipts.voucher.concept"),
     },
+    {
+      key: "invoice",
+      label: t("receipts.data.invoice"),
+      value: receipt.invoice,
+    },    
     {
       key: "receiptNumber",
       label: t("receipts.data.receiptNumber"),

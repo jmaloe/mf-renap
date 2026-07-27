@@ -19,4 +19,6 @@ export type IReceiptData = Readonly<{
   linea_1: string;
   linea_2: string;
   linea_3: string;
+  copyNumbers: number;
+  serviceName: string;
 }>;
