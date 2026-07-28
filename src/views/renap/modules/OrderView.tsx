@@ -80,15 +80,15 @@ const OrderView = ({
 
     const orderData: ICobroSolicitudReq = {
       codigo_evento: form.rateType,
-      usuario: user,
-      caja_rural: office,
-      url: baseUrl,
-      grupo: profileId,
       monto: getFormatNumber(`${subtotal}`) ?? "0.00",
       cantidad_copias: form.copyNumbers,
       tipo_tarifa: "",
       orden_pago: "",
       total_pagar: getFormatNumber(`${totalAmount}`) ?? "0.00",
+      usuario: user,
+      caja_rural: office,
+      grupo: profileId,
+      url: "/mf-renap",
       ip: clientIp,
       nombre_evento: rateTypeSelected?.label ?? "NE",
       comision: getFormatNumber(`${commissionData?.consulta_comision?.datos?.money ?? "0"}`) ?? "0.00"      

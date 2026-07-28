@@ -14,12 +14,13 @@
   "msg": {
     "titles": {
       "default": "Error en la transacción",
-      "invalidData": "Error en la transacción. Monto no permitido.",
+      "invalidData": "Error en la transacción. Verifique los datos ingresados",
       "badFormat": "Formato Incorrecto"
     },
     "descriptions": {
       "default": "Ocurrió un error inesperado. Por favor, intente nuevamente o contacte a soporte.",
       "noPermissions": "No posee permisos para realizar esta transacción.",
+      "invalidAmount": "El monto de la transacción no esta permitido.",
       "invalidRateType": "El tipo de tarifa seleccionado no esta permitido.",
       "invalidParameters": "Los parámetros de la transacción no son válidos.", 
       "outOfHours": "El servicio no se encuentra disponible en estos momentos, el horario establecido es de 8:00 a 20:00 horas.",

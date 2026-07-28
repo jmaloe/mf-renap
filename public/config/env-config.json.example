@@ -1,5 +1,5 @@
 {
-  "transactionCode": "18108",
+  "transactionCode": "18200",
   "hostJsons": {
     "runtime": "/config/mf-config.json",
     "remotes": "/config/mf-hub-remotes.json"
