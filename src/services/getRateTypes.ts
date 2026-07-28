@@ -16,8 +16,8 @@ const getRateTypes = async (
 ): Promise<ITarifarioRes> => {
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";  
-  const apiTipoTarifario = config?.apiRestPathsRenap.consultaTipoTarifario ?? "";
-  const apiTarifario = config?.apiRestPathsRenap.consultaTarifario ?? "";
+  const apiTipoTarifario = config?.apiRestPaths.consultaTipoTarifario ?? "";
+  const apiTarifario = config?.apiRestPaths.consultaTarifario ?? "";
 
   let tipoTarifarioResp: ITipoTarifarioRes;
   try {

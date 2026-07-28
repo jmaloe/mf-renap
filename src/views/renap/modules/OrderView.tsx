@@ -28,6 +28,7 @@ import type { IConsultaComisionReq } from "@/interfaces/services/consultaComisio
 import type { IConsultaParametroRes } from "@/interfaces/services/consultaParametro/IConsultaParametroRes";
 import type { IConsultaComisionRes } from "@/interfaces/services/consultaComision/IConsultaComisionRes";
 import {getFormatNumber} from "@/utils/formats/formatNumber";
+import getValidateAmount from "@/services/getValidateAmount";
 
 type IProps = Readonly<{
   authContext?: IAuthContext | null;
@@ -41,6 +42,7 @@ const OrderView = ({
   onSelectPage,
 }: IProps) => {
   const { t } = useTranslation();  
+  const { loading: loadingValidateAmount, execute: executeValidateAmount } = useRequest<ICobroSolicitudReq>(); 
   const { loading: loadingTarifario, execute: executeTarifario } = useRequest<ITarifarioRes>();
   const { loading: loadingCommission, execute: executeCommission } = useRequest<IConsultaComisionRes>();
   const [rateTypes, setRateTypes] = useState<ITarifarioItems[]>([]);
@@ -74,7 +76,8 @@ const OrderView = ({
     const user = authContext?.user?.username ?? "";
     const office = authContext?.user?.profile?.oficina ?? "";
     const profileId = authContext?.user?.profile?.id ?? "";       
-    const clientIp = "127.0.0.1";    
+    const clientIp = "127.0.0.1";            
+
     const orderData: ICobroSolicitudReq = {
       codigo_evento: form.rateType,
       usuario: user,
@@ -90,6 +93,19 @@ const OrderView = ({
       nombre_evento: rateTypeSelected?.label ?? "NE",
       comision: getFormatNumber(`${commissionData?.consulta_comision?.datos?.money ?? "0"}`) ?? "0.00"      
     };
+
+    const { data: resClientData, error: resClientError } = await executeValidateAmount(() =>
+      getValidateAmount(orderData, t, authContext),
+    );
+    if (!resClientData) {
+      setModalData({
+        title: t("msg.titles.invalidData", { ns: "error" }),
+        description:
+          resClientError || t("msg.descriptions.default", { ns: "error" }),
+      });
+      setOnChangeModal(true);
+      return;
+    }
     
     onSubmitOrderData(orderData);
     onSelectPage("preview");

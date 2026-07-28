@@ -14,7 +14,7 @@
   "msg": {
     "titles": {
       "default": "Error en la transacción",
-      "invalidData": "Error en la transacción.",
+      "invalidData": "Error en la transacción. Monto no permitido.",
       "badFormat": "Formato Incorrecto"
     },
     "descriptions": {

@@ -12,7 +12,7 @@ const getCommissionRate = async (
 ): Promise<IConsultaComisionRes> => {
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";    
-  const apiCommission = config?.apiRestPathsRenap.consultaComision ?? "";  
+  const apiCommission = config?.apiRestPaths.consultaComision ?? "";  
 
   let serviceCommissionResponse: IConsultaComisionRes;      
   

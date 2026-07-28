@@ -26,7 +26,7 @@ export const renapPaymentService = async (
 
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";
-  const apiPayment = config?.apiRestPathsRenap.cobroSolicitud ?? "";
+  const apiPayment = config?.apiRestPaths.cobroSolicitud ?? "";
 
   let paymentData: ICobroSolicitudRes;
   try {

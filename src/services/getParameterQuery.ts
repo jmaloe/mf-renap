@@ -11,7 +11,7 @@ const getParameterQuery = async (
 ): Promise<IConsultaParametroRes> => {
   const config = await loadEnvConfig();
   const token = authContext?.token ?? "";    
-  const apiParameterQuery = config?.apiRestPathsRenap.consultaParametro ?? "";
+  const apiParameterQuery = config?.apiRestPaths.consultaParametro ?? "";
 
   /*const queryParams: IConsultaParametroReq = {
     nemonico:"NCR",
