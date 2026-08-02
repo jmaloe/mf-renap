@@ -16,6 +16,7 @@ Archivo utilizado exclusivamente durante el desarrollo local y el proceso de con
 | `VITE_HOST_PATH` | Endpoint del Portal para el proxy de vite. | `/` |
 | `VITE_APIGATEWAY_TOKEN` | Token del gateway para pruebas locales. | `eyABC123...` |
 | `VITE_BASE_NAME` | Nombre base de la aplicación. | `mf-renap` |
+| `VITE_BASE_ID` | Id utilizado en los componentes internos. | `OverrideTemplate` |
 | `VITE_CDN_URL` | URL del CDN o Design System utilizado por la aplicación. | `https://caja-banrural-dev.apps.ocp-desa.banrural.com.gt/design-system` |
 
 ### b. Variables de Runtime (public/config/env-config.json)
@@ -40,10 +41,10 @@ Archivo cargado dinámicamente en tiempo de ejecución. Permite modificar config
 
 - Seleccionamos nuestro proyecto **Openshift**.
 
->[!note] Si el **"namespace/project"** no existe, solicitar su creación a nombre de: `br-cajabr-override-template`.
+>[!note] Si el **"namespace/project"** no existe, solicitar su creación a nombre de: `br-cajabr-renap`.
 
 ```bash
-oc project br-cajabr-override-template
+oc project br-cajabr-renap
 ```
 
 - Nos logueamos en los **Registries** necesarios.
@@ -62,19 +63,19 @@ El comando de despliegue `podman build` posee la posibilidad de configurar 2 var
 >>>
 
 ```bash
-podman build --format docker --no-cache -t default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-override-template/mf-renap:v1.0.0 .
-podman push default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-override-template/mf-renap:v1.0.0
+podman build --format docker --no-cache -t default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-renap/mf-renap:v1.0.0 .
+podman push default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-renap/mf-renap:v1.0.0
 ```
 
 >>> [!important] Importante
 Si existen conflictos al momento de subir la imagen, pero no se crea el **ImageStream** se puede realizar lo siguiente:
 
 ```bash
-oc create imagestream mf-renap -n br-cajabr-override-template
+oc create imagestream mf-renap -n br-cajabr-renap
 # Y realizamos el push nuevamente
 
 # Para eliminar el imagestream
-oc delete imagestream mf-renap -n br-cajabr-override-template
+oc delete imagestream mf-renap -n br-cajabr-renap
 ```
 >>>
 
@@ -92,7 +93,7 @@ oc apply -f .\deploy\route.yaml
 Para eliminar las imagenes residuales y las configuraciones de **Openshift** se ocuparan los siguientes comandos:
 
 ```bash
-podman rmi -f default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-override-template/mf-renap:v1.0.0
+podman rmi -f default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-renap/mf-renap:v1.0.0
 
 oc delete -f .\deploy\route.yaml
 oc delete -f .\deploy\service.yaml
@@ -106,7 +107,7 @@ oc delete -f .\deploy\secret.yaml
 Para desarrollo local debemos utilizar:
 
 ```bash
-podman run --rm -p 8080:8080 --name mf-renap default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-override-template/mf-renap:v1.0.0
+podman run --rm -p 8080:8080 --name mf-renap default-route-openshift-image-registry.apps.ocp-desa.banrural.com.gt/br-cajabr-renap/mf-renap:v1.0.0
 
 # Para eliminar el contenedor
 podman rm -f mf-renap

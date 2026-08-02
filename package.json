@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "template": {
-    "version": "1.1.1"
+    "version": "1.1.4"
   },
   "scripts": {
     "lint": "eslint .",
@@ -13,7 +13,7 @@
     "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "dev": "vite",
     "build": "npm run lint && npm run lint:css && tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "npm run build && vite preview"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -66,6 +66,9 @@
   "overrides": {
     "debug": "^4.4.3",
     "esbuild": "0.28.1",
-    "minimatch": "^10.2.5"
+    "minimatch": "^10.2.5",
+    "brace-expansion": "^5.0.8",
+    "@hono/node-server": "^2.0.11",
+    "nanoid": "^6.0.0"
   }
 }

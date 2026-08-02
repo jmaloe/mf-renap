@@ -9,9 +9,11 @@
 FROM registry.redhat.io/rhel10/nodejs-24:10.1 AS builder
 
 ARG VITE_BASE_NAME=mf-renap
+ARG VITE_BASE_ID=renap
 ARG VITE_CDN_URL=https://caja-banrural-dev.apps.ocp-desa.banrural.com.gt/design-system
 
 ENV VITE_BASE_NAME=${VITE_BASE_NAME}
+ENV VITE_BASE_ID=${VITE_BASE_ID}
 ENV VITE_CDN_URL=${VITE_CDN_URL}
 
 WORKDIR ${HOME}
@@ -39,4 +41,4 @@ USER 1001
 
 HEALTHCHECK --interval=20s --timeout=5s --start-period=10s --retries=3 CMD curl -f http://localhost:8080/healthz || exit 1
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-e", "/dev/stderr", "-g", "daemon off;"]

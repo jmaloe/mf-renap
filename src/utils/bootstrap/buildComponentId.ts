@@ -8,9 +8,8 @@ export const setCurrentScreen = (screen: INavigation): void => {
 };
 
 const getTransaction = (): string => {
-  const baseName: string = import.meta.env.VITE_BASE_NAME ?? "mf-root";
+  const baseName: string = import.meta.env.VITE_BASE_ID ?? "root";
   return baseName
-    .replace(/^mf-/, "")
     .replace(/[^a-zA-Z0-9-]/g, "")
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -23,5 +22,5 @@ export const buildComponentId = (type: string, name: string): string => {
   const transaction = getTransaction();
   const screen = toCapitalizeFirst(currentScreen);
 
-  return `${newType}${screen}${transaction}${newName}`;
+  return `${newType}${screen}${newName}${transaction}`;
 };
