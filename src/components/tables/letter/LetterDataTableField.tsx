@@ -13,6 +13,20 @@ type IProps = Readonly<{
 
 const LetterDataTableField = ({ id, label, value, t, hasReprint }: IProps) => {
   const isReprint = getIsReprint();
+
+  if (!label) {
+    return (
+      <div className="text-center">
+        <p
+          id={buildComponentId("lbl", `${id}Value`)}
+          className="break-words leading-[1.4]"
+        >
+          {value}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={

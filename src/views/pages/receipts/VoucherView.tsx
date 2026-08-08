@@ -23,13 +23,48 @@ const VoucherView = ({ receipt, size }: IProps) => {
   const width = size.width + "px";
   const isReprint = getIsReprint();
 
-  const contract = t("receipts.data.contract") + " ";
-  const currencySymbol = t("receipts.data.currencySymbol") + " ";
+  const contract = t("receipts.data.contract").toUpperCase();
+  const currencySymbol = t("receipts.data.currencySymbol").toUpperCase();
   const fields: IFieldData[] = [
+    {
+      key: "linea_1",
+      label: "",
+      value: receipt.linea_1,
+    },
+    {
+      key: "linea_2",
+      label: "",
+      value: receipt.linea_2,
+    },
+    {
+      key: "linea_3",
+      label: "",
+      value: receipt.linea_3,
+    },
     {
       key: "payment",
       label: t("receipts.data.payment"),
       value: contract,
+    },
+    {
+      key: "referenceNumber",
+      label: t("receipts.data.referenceNumber"),
+      value: receipt.referencia,
+    },
+    {
+      key: "concept",
+      label: t("receipts.data.concept"),
+      value: receipt.serviceName,
+    },
+    {
+      key: "boletaRenap",
+      label: t("receipts.data.boletaRenap"),
+      value: receipt.boleta_pago,
+    },
+    {
+      key: "copyNumber",
+      label: t("receipts.data.copynumbers"),
+      value: String(receipt.copyNumbers),
     },
     {
       key: "amount",
@@ -37,21 +72,20 @@ const VoucherView = ({ receipt, size }: IProps) => {
       value: currencySymbol + receipt.amount,
     },
     {
-      key: "concept",
-      label: t("receipts.data.concept"),
-      value: t("receipts.voucher.concept"),
-    },
-    {
       key: "invoice",
       label: t("receipts.data.invoice"),
       value: receipt.invoice,
-    },    
+    },
     {
       key: "receiptNumber",
       label: t("receipts.data.receiptNumber"),
       value: receipt.receiptNumber,
     },
-    { key: "date", label: t("receipts.data.date"), value: receipt.date },
+    {
+      key: "date",
+      label: t("receipts.data.date"),
+      value: receipt.date,
+    },
   ];
 
   return (

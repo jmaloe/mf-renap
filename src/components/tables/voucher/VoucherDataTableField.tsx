@@ -7,6 +7,19 @@ type IProps = Readonly<{
 }>;
 
 const VoucherDataTableField = ({ id, label, value }: IProps) => {
+  if (!label) {
+    return (
+      <div className="text-center">
+        <span
+          id={buildComponentId("lbl", `${id}Value`)}
+          className="block break-words leading-[1.2]"
+        >
+          {value}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-2 gap-2 leading-tight">
       <span

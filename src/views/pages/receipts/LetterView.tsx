@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import ReceiptUserTable from "@/components/tables/receipt/ReceiptUserTable";
+import SignSeparator from "@/components/separators/SignSeparator";
 import type { IReceiptData } from "@/interfaces/components/receipt/IReceiptData";
 import type { ISize } from "@/interfaces/components/receipt/ISize";
 import LetterDataTable from "@/components/tables/letter/LetterDataTable";
@@ -30,6 +31,24 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
   const isReprint = getIsReprint();
   const fields: IFieldData[] = isReprint
     ? [
+        {
+          key: "linea_1",
+          label: "",
+          value: receipt.linea_1,
+          hasReprint: true,
+        },
+        {
+          key: "linea_2",
+          label: "",
+          value: receipt.linea_2,
+          hasReprint: true,
+        },
+        {
+          key: "linea_3",
+          label: "",
+          value: receipt.linea_3,
+          hasReprint: true,
+        },
         {
           key: "top",
           label: "",
@@ -85,6 +104,21 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
         },
       ]
     : [
+        {
+          key: "linea_1",
+          label: "",
+          value: receipt.linea_1,
+        },
+        {
+          key: "linea_2",
+          label: "",
+          value: receipt.linea_2,
+        },
+        {
+          key: "linea_3",
+          label: "",
+          value: receipt.linea_3,
+        },
         {
           key: "payment",
           label: t("receipts.data.payment"),
@@ -142,31 +176,34 @@ const LetterView = ({ receipt, size, isSecond = false }: IProps) => {
             <div className="border-b-2 border-gray-400 text-center print:border-0">
               <ReceiptTitle className="text-sm" title={t("receipts.title")} />
             </div>
-            <div
-              className={`${isReprint ? "py-1" : "py-5"} px-5 grid gap-3 leading-[1.4]`}
-            >
+            <div className={`${isReprint ? "py-1" : "py-5"} px-5 grid gap-3 leading-[1.4]`}>
               <LetterDataTable
                 fields={fields}
                 suffix={suffix}
                 t={t}
               />
-              {isReprint && (
-                <ReceiptTitle
-                  className="mt-0 leading-[1.4]"
-                  title={t("receipts.reprint.subtitle")}
+              <div className="text-[10px]">
+                <div className="mt-8 leading-none">
+                  <SignSeparator />
+                </div>
+                {isReprint && (
+                  <ReceiptTitle
+                    className="mt-6 leading-[1.2]"
+                    title={t("receipts.reprint.subtitle")}
+                  />
+                )}
+                <ReceiptUserTable
+                  id="voucher"
+                  receipt={receipt}
+                  classNameTable="mt-6"
+                  isVoucher
                 />
-              )}
-              <ReceiptUserTable
-                id="letter"
-                receipt={receipt}
-                classNameTable={isReprint ? "mt-0" : "mt-6"}
-                suffix={suffix}
-              />
-              <ReceiptFooter
-                id="letterFooter"
-                userName={receipt.userName}
-                classNameTable={isReprint ? "mt-0" : "mt-6"}
-              />
+                <ReceiptFooter
+                  id="voucherFooter"
+                  userName={receipt.userName}
+                  classNameTable="mt-6"
+                />
+              </div>
             </div>
           </div>
         </div>

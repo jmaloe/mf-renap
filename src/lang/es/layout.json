@@ -34,7 +34,8 @@
       "invoiceSymbol": "Q",
       "concept": "Tramite:",
       "receiptNumber": "Correlativo CGC No.:",
-      "referenceNumber": "Referencia No:",      
+      "referenceNumber": "Referencia No:",
+      "boletaRenap": "BOLETA RENAP:",
       "date": "Fecha:"
     },
     "userData": {
