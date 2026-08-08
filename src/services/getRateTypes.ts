@@ -2,6 +2,7 @@ import type { TFunction } from "i18next";
 
 import loadEnvConfig from "@/utils/bootstrap/loadEnvConfig";
 import { http } from "@/utils/http/httpClient";
+import { toSimpleXml } from "@/utils/formats/formatXml";
 
 import type { ITipoTarifarioReq } from "@/interfaces/services/consultaTipoTarifario/ITipoTarifarioReq";
 import type { ITipoTarifarioRes } from "@/interfaces/services/consultaTipoTarifario/ITipoTarifarioRes";
@@ -21,7 +22,10 @@ const getRateTypes = async (
 
   let tipoTarifarioResp: ITipoTarifarioRes;
   try {
-    tipoTarifarioResp = await http.post<ITipoTarifarioRes>(apiTipoTarifario, token, client);
+    const tipoTarifarioXml = toSimpleXml(client);
+    tipoTarifarioResp = await http.post<ITipoTarifarioRes>(apiTipoTarifario, token, tipoTarifarioXml, {
+      responseType: "xml",
+    });
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
@@ -51,18 +55,20 @@ const getRateTypes = async (
     }
   };
 
-  let rateData: ITarifarioRes;      
-  
+  let rateData: ITarifarioRes;
+
   try {
+    const tarifarioXml = toSimpleXml(tarifarioRequest);
     rateData = await http.post<ITarifarioRes>(
       apiTarifario,
       token,
-      tarifarioRequest,
+      tarifarioXml,
+      { responseType: "xml" },
     );
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     throw new Error(t("msg.descriptions.default", { ns: "error" }));
-  }  
+  }
   
   if (Number(rateData?.Clta_Tarifario.resultado?.codigo) !== 1) {
     throw new Error(t("msg.descriptions.invalidRateType", { ns: "error" }));

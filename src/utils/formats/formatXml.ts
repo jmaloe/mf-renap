@@ -159,3 +159,42 @@ export const buildPayload = (
 
   return fields.trim();
 };
+
+const serializeXmlNode = (tagName: string, value: unknown): string => {
+  if (value === null || value === undefined) {
+    return `<${tagName}></${tagName}>`;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => serializeXmlNode(tagName, item)).join("");
+  }
+
+  if (typeof value === "object" && !(value instanceof Date)) {
+    const children = Object.entries(value as Record<string, unknown>)
+      .map(([key, childValue]) => serializeXmlNode(key, childValue))
+      .join("");
+
+    return `<${tagName}>${children}</${tagName}>`;
+  }
+
+  return `<${tagName}>${escapeXml(toPrimitive(value))}</${tagName}>`;
+};
+
+export const toSimpleXml = <T extends Record<string, unknown>>(body: T): string => {
+  const entries = Object.entries(body ?? {});
+
+  if (entries.length === 0) {
+    return '<?xml version="1.0" encoding="UTF-8"?>';
+  }
+
+  if (entries.length === 1) {
+    const [rootName, rootValue] = entries[0];
+    return `<?xml version="1.0" encoding="UTF-8"?>\n${serializeXmlNode(rootName, rootValue)}`;
+  }
+
+  const children = entries
+    .map(([key, value]) => serializeXmlNode(key, value))
+    .join("");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<root>${children}</root>`;
+};

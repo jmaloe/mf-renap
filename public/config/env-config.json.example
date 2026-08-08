@@ -3,7 +3,7 @@
   "hostJsons": {
     "runtime": "/config/mf-config.json",
     "remotes": "/config/mf-hub-remotes.json"
-  },
+  },  
   "apiBaseUrl": "https://....banrural.com.gt",
   "apiRestPaths": {
     "verifyAccess": "/ws_cr_gestiones_admon/v1/verificar-acceso",
@@ -18,5 +18,5 @@
     "consultaComision": "/ws_cr_pago_comision/v1/consultaComision",
     "ingresoTransaccion": "/ws_cr_pago_renap/v1/ingreso_transaccion",
     "cobroSolicitud": "/ws_cr_pago_renap/v1/cobro_solicitud"
-  }
+  }  
 }
